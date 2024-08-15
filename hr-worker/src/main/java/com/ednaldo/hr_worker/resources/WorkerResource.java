@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 @RefreshScope
 @RestController
 @RequestMapping(value = "/workers")
 public class WorkerResource {
 
-    private static Logger logger = LoggerFactory.getLogger(WorkerResource.class);
+    private static final Logger logger = LoggerFactory.getLogger(WorkerResource.class);
 
     @Value("${test.config}")
     private String testConfig;
@@ -39,7 +40,6 @@ public class WorkerResource {
         return ResponseEntity.noContent().build();
     }
 
-
     @GetMapping
     public ResponseEntity<List<Worker>> findAll() {
         List<Worker> list = workerRepository.findAll();
@@ -54,7 +54,6 @@ public class WorkerResource {
 //        }catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-
         logger.info("PORT = " + environment.getProperty("local.server.port"));
         Worker optional = workerRepository.findById(id).get();
         return ResponseEntity.ok(optional);

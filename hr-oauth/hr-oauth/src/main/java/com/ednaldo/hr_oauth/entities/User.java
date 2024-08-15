@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 
 public class User implements UserDetails, Serializable {
     private static final long serialVersionUID = 1L;
-
 
     private Long id;
     private String name;
@@ -63,6 +61,7 @@ public class User implements UserDetails, Serializable {
         return roles.stream().map(nameRole -> new SimpleGrantedAuthority(nameRole.getRoleName())).collect(Collectors.toList());
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
