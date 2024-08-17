@@ -16,7 +16,7 @@ public class UserService implements UserDetailsService {
     private static Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
-    UserFeignClient userFeignClient;
+    private UserFeignClient userFeignClient;
 
     public User finByEmail(String email) {
         User user = userFeignClient.findByEmail(email).getBody();
